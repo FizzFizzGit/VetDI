@@ -1,0 +1,16 @@
+﻿<Application 
+    x:Class="VetDI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:VetDI"
+    StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <Style x:Key="window_common" TargetType="Window">
+            <Setter Property="Icon" Value="F:\VSCWorkSpace\C#WPF\VetDI\Resource\Icon.ico"/>
+
+        </Style>
+        
+    </Application.Resources>
+
+</Application>

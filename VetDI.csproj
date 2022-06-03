@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>1.2.0.0</Version>
+    <Copyright>FizzFizz</Copyright>
+    <OutputType>WinExe</OutputType>
+    <ApplicationIcon>Resource\Icon.ico</ApplicationIcon>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    <SupportedCultures>ja-JP;</SupportedCultures>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>false</PublishTrimmed>
+    <SelfContained>false</SelfContained>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis" Version="1.52.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.52.0" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.52.0.2354" />
+  </ItemGroup>
+  
+</Project>

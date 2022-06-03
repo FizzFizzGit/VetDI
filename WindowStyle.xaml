@@ -1,0 +1,66 @@
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:VetDI"
+    mc:Ignorable="d">
+    <Style x:Key="_RoundedButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="Century Gothic"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="UltraBold"/>
+        <Setter Property="Margin" Value="0,5,5,5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="3">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                        </Border>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="Gray_RoundedButtonStyle" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle}">
+        <Setter Property="Background" Value="#474747"/>
+        <Setter Property="Foreground" Value="White"/>
+
+    </Style>
+
+    <Style x:Key="Red_RoundedButtonStyle" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle}">
+        <Setter Property="Background" Value="#dc143c"/>
+        <Setter Property="Foreground" Value="White"/>
+
+    </Style>
+
+    <!-- マウスオーバーで選択可能にするやつ -->
+    <Style TargetType="ListBoxItem">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="IsSelected" Value="True"/>
+
+            </Trigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+    <Style TargetType="ListBox">
+        <Setter Property="Margin" Value="5,0,0,0"/>
+        <Setter Property="BorderBrush" Value="#474747"/>
+
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderBrush" Value="#474747"/>
+
+    </Style>
+
+</ResourceDictionary>
