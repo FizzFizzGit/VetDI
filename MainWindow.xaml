@@ -31,12 +31,12 @@
         </Menu>
 
         <!-- メインビュー -->
-        <ScrollViewer
-            x:Name="Scroll_Panel"
+        <Canvas
+            x:Name="Canvas"
             Grid.Row="1"
             Margin="0,0,0,24">
 
-        </ScrollViewer>
+        </Canvas>
 
         <!-- ステータスバー -->
         <StatusBar x:Name="StatusBar" Grid.Row="2" Height="24" VerticalAlignment="Bottom">
