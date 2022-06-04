@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>1.2.0.0</Version>
     <Copyright>FizzFizz</Copyright>
@@ -15,11 +14,10 @@
     <SelfContained>false</SelfContained>
     <Optimize>true</Optimize>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Google.Apis" Version="1.52.0" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.52.0" />
-    <PackageReference Include="Google.Apis.Drive.v3" Version="1.52.0.2354" />
+    <PackageReference Include="Google.Apis" Version="1.52.0"/>
+    <PackageReference Include="Google.Apis.Auth" Version="1.52.0"/>
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.52.0.2354"/>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="*"/>
   </ItemGroup>
-  
 </Project>
