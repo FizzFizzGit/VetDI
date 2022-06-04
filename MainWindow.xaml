@@ -4,8 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
-    xmlns:Behaviors="clr-namespace:ExcelWpf.Behaviors" 
     xmlns:local="clr-namespace:VetDI"
     mc:Ignorable="d"
     Height="300"
@@ -33,17 +31,12 @@
         </Menu>
 
         <!-- メインビュー -->
-        <Canvas x:Name="canvas"
+        <ScrollViewer
+            x:Name="Scroll_Panel"
             Grid.Row="1"
-            Margin="0,0,0,24"
-            Background="Transparent">
-            
-            <b:Interaction.Behaviors>
-                <Behaviors:CanvasGridBehavior/>
+            Margin="0,0,0,24">
 
-            </b:Interaction.Behaviors>
-
-        </Canvas>
+        </ScrollViewer>
 
         <!-- ステータスバー -->
         <StatusBar x:Name="StatusBar" Grid.Row="2" Height="24" VerticalAlignment="Bottom">
