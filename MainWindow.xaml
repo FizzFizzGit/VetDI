@@ -1,20 +1,13 @@
-﻿<Window 
-    x:Class="VetDI.MainWindow"
+﻿<Window x:Class="VetDI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:VetDI"
-    mc:Ignorable="d"
-    Height="300"
-    Width="450"
-    ResizeMode="CanResizeWithGrip"
-    Title="VetDI"
-    Style="{StaticResource window_common}">
+    xmlns:local="clr-namespace:VetDI" mc:Ignorable="d" Height="300" Width="450" ResizeMode="CanResizeWithGrip" Title="VetDI" Style="{StaticResource window_common}">
 
     <Window.Resources>
         <ResourceDictionary Source="/WindowStyle.xaml"/>
-        
+
     </Window.Resources>
 
     <Grid>
@@ -31,10 +24,8 @@
         </Menu>
 
         <!-- メインビュー -->
-        <Canvas
-            x:Name="Canvas"
-            Grid.Row="1"
-            Margin="0,0,0,24">
+        <Canvas x:Name="CanvasView" Grid.Row="1" Margin="0,0,0,24" Background="Transparent">
+            <Line Name="GridLine" Stroke="LightGray" StrokeThickness="1"/>
 
         </Canvas>
 
