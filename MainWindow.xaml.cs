@@ -22,7 +22,7 @@ namespace VetDI {
         //コンストラクタ
         public MainWindow () {
             InitializeComponent ();
-            GridView ();
+            BuildGrid ();
             this.SizeChanged += MainWindow_SizeChanged;
             this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
@@ -30,7 +30,7 @@ namespace VetDI {
         }
 
         private void MainWindow_SizeChanged (object sender, SizeChangedEventArgs e) {
-            GridView ();
+            BuildGrid ();
         }
         
         private void MainWindow_Closing (object sender, System.ComponentModel.CancelEventArgs e) { }
@@ -41,7 +41,7 @@ namespace VetDI {
             MessageBox.Show (messageBoxText: ABOUT_DESCRIPTION, caption: "About");
         }
 
-        private void GridView () {
+        private void BuildGrid () {
             CanvasView.Children.Clear ();
 
             for (int i = 0; i < this.ActualWidth; i += GRID_SIZE) {
