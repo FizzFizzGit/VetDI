@@ -1,3 +1,4 @@
+//Draw a grid pattern on the canvas
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -7,7 +8,7 @@ using Microsoft.Xaml.Behaviors;
 namespace BuildGrid.Behaviors {
     class BuildGrid : Behavior<Canvas> {
         private const int GRID_SIZE = 10;
-
+        //"AssociatedObject" is the target
         protected override void OnAttached () {
             base.OnAttached ();
             AssociatedObject.SizeChanged += AssociatedObject_SizeChanged;
@@ -17,12 +18,15 @@ namespace BuildGrid.Behaviors {
             base.OnDetaching ();
             AssociatedObject.Loaded -= AssociatedObject_Loaded;
         }
+        //Draw at startup
         private void AssociatedObject_Loaded (object sender, RoutedEventArgs e) {
             CreateCanvasGrid ();
         }
+        //Drawing at resizing
         private void AssociatedObject_SizeChanged (object sender, SizeChangedEventArgs e) {
             CreateCanvasGrid ();
         }
+        //Ruled line drawing
         private void CreateCanvasGrid () {
             AssociatedObject.Children.Clear ();
 
