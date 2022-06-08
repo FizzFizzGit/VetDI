@@ -17,7 +17,6 @@ namespace VetDI {
 
         //メンバ変数
         private const string ABOUT_DESCRIPTION = "about\n\n";
-        private const int GRID_SIZE = 10;
 
         //コンストラクタ
         public MainWindow () {
