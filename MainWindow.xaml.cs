@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using System.Drawing;
 
 namespace VetDI {
     /// <summary>
@@ -22,52 +22,17 @@ namespace VetDI {
         //コンストラクタ
         public MainWindow () {
             InitializeComponent ();
-            BuildGrid ();
-            this.SizeChanged += MainWindow_SizeChanged;
             this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
 
         }
 
-        private void MainWindow_SizeChanged (object sender, SizeChangedEventArgs e) {
-            BuildGrid ();
-        }
-        
         private void MainWindow_Closing (object sender, System.ComponentModel.CancelEventArgs e) { }
 
         private void MainWindow_Loaded (object sender, RoutedEventArgs e) { }
 
         private void Button_About_Click (object sender, RoutedEventArgs e) {
             MessageBox.Show (messageBoxText: ABOUT_DESCRIPTION, caption: "About");
-        }
-
-        private void BuildGrid () {
-            CanvasView.Children.Clear ();
-
-            for (int i = 0; i < this.ActualWidth; i += GRID_SIZE) {
-                Line GridLine = new Line () {
-                X1 = i,
-                Y1 = 0,
-                X2 = i,
-                Y2 = this.ActualHeight,
-                StrokeThickness = 1,
-                Stroke = new SolidColorBrush(Colors.LightGray),
-                SnapsToDevicePixels = true
-                };
-                CanvasView.Children.Add (GridLine);
-            }
-            for (int i = 0; i < this.ActualHeight; i += GRID_SIZE) {
-                Line GridLine = new Line () {
-                X1 = 0,
-                Y1 = i,
-                X2 = this.ActualWidth,
-                Y2 = i,
-                StrokeThickness = 1,
-                Stroke = new SolidColorBrush(Colors.LightGray),
-                SnapsToDevicePixels = true
-                };
-                CanvasView.Children.Add (GridLine);
-            }
         }
     }
 }

@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
+    xmlns:Behaviors="clr-namespace:BuildGrid.Behaviors" 
     xmlns:local="clr-namespace:VetDI"
     mc:Ignorable="d" Height="300" Width="450" ResizeMode="CanResizeWithGrip" Title="VetDI" Style="{StaticResource window_common}">
 
@@ -25,7 +27,11 @@
         </Menu>
 
         <!-- メインビュー -->
-        <Canvas x:Name="CanvasView" Grid.Row="1" Margin="0,0,0,24" Background="Transparent"></Canvas>
+        <Canvas x:Name="CanvasView" Grid.Row="1" Margin="0,0,0,24" Background="Transparent">
+            <b:Interaction.Behaviors>
+                <Behaviors:BuildGrid/>
+            </b:Interaction.Behaviors>
+        </Canvas>
 
         <!-- ステータスバー -->
         <StatusBar x:Name="StatusBar" Grid.Row="2" Height="24" VerticalAlignment="Bottom">
