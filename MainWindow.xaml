@@ -3,10 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
-    xmlns:Behaviors="clr-namespace:BuildGrid.Behaviors" 
-    xmlns:local="clr-namespace:VetDI"
-    mc:Ignorable="d" Height="300" Width="450" ResizeMode="CanResizeWithGrip" Title="VetDI" Style="{StaticResource window_common}">
+    xmlns:local="clr-namespace:VetDI" mc:Ignorable="d" Height="300" Width="450" ResizeMode="CanResizeWithGrip" Title="VetDI" Style="{StaticResource window_common}">
 
     <Window.Resources>
         <ResourceDictionary Source="/WindowStyle.xaml"/>
@@ -27,11 +24,34 @@
         </Menu>
 
         <!-- メインビュー -->
-        <Canvas x:Name="CanvasView" Grid.Row="1" Margin="0,0,0,24" Background="Transparent">
-            <b:Interaction.Behaviors>
-                <Behaviors:BuildGrid/>
-            </b:Interaction.Behaviors>
-        </Canvas>
+        <ScrollViewer x:Name="Scroll_Panel" Grid.Row="2" Margin="0,0,0,24">
+            <ListBox x:Name="URLList" SelectionMode="Single" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="Button_Erase" Content="×" Click="Button_Erase_Click" Width="20" Height="100" Style="{StaticResource Red_RoundedButtonStyle}"/>
+
+                            <Button x:Name="Button_SubWindowOpen" Click="Button_SubWindowOpen_Click" Width="100" Height="100" Style="{StaticResource Gray_RoundedButtonStyle}">
+
+                                <Image Source="{Binding Graphic}" Width="100" Height="100"/>
+
+                            </Button>
+
+                            <Button x:Name="Button_Copy" Click="Button_Copy_Click" Height="100">
+
+                                <TextBlock Text="{Binding URLText}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
+
+                            </Button>
+
+                        </StackPanel>
+
+                    </DataTemplate>
+
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+        </ScrollViewer>
 
         <!-- ステータスバー -->
         <StatusBar x:Name="StatusBar" Grid.Row="2" Height="24" VerticalAlignment="Bottom">
