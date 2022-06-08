@@ -10,6 +10,7 @@ namespace BuildGrid.Behaviors {
 
         protected override void OnAttached () {
             base.OnAttached ();
+            AssociatedObject.SizeChanged += AssociatedObject_SizeChanged;
             AssociatedObject.Loaded += AssociatedObject_Loaded;
         }
         protected override void OnDetaching () {
@@ -19,7 +20,9 @@ namespace BuildGrid.Behaviors {
         private void AssociatedObject_Loaded (object sender, RoutedEventArgs e) {
             CreateCanvasGrid ();
         }
-
+        private void AssociatedObject_SizeChanged (object sender, SizeChangedEventArgs e) {
+            CreateCanvasGrid ();
+        }
         private void CreateCanvasGrid () {
             AssociatedObject.Children.Clear ();
 
