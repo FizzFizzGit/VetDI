@@ -3,7 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:VetDI" mc:Ignorable="d" Height="300" Width="450" ResizeMode="CanResizeWithGrip" Title="VetDI" Style="{StaticResource window_common}">
+    xmlns:local="clr-namespace:VetDI"
+    mc:Ignorable="d"
+    Height="300"
+    Width="450"
+    ResizeMode="CanResizeWithGrip"
+    Title="VetDI"
+    Style="{StaticResource window_common}">
 
     <Window.Resources>
         <ResourceDictionary Source="/WindowStyle.xaml"/>
@@ -13,6 +19,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
 
         </Grid.RowDefinitions>
@@ -23,35 +30,35 @@
 
         </Menu>
 
+        <!-- 検索バー -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="Keyword"
+                Grid.Column="0"
+                VerticalContentAlignment="Center"
+                Text="検索"
+                GotFocus="OnGotFocusHandler"
+                LostFocus="OnLostFocusHandler">
+
+            </TextBox>
+
+            <Button x:Name="Button_Submit"
+                Grid.Column="1"
+                Content="Search"
+                Click="Button_Submit_Click"
+                Style="{StaticResource Gray_RoundedButtonStyle}">
+
+            </Button>
+
+        </Grid>
+
         <!-- メインビュー -->
-        <ScrollViewer x:Name="Scroll_Panel" Grid.Row="2" Margin="0,0,0,24">
-            <ListBox x:Name="URLList" SelectionMode="Single" ItemsSource="{Binding}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Button x:Name="Button_Erase" Content="×" Click="Button_Erase_Click" Width="20" Height="100" Style="{StaticResource Red_RoundedButtonStyle}"/>
-
-                            <Button x:Name="Button_SubWindowOpen" Click="Button_SubWindowOpen_Click" Width="100" Height="100" Style="{StaticResource Gray_RoundedButtonStyle}">
-
-                                <Image Source="{Binding Graphic}" Width="100" Height="100"/>
-
-                            </Button>
-
-                            <Button x:Name="Button_Copy" Click="Button_Copy_Click" Height="100">
-
-                                <TextBlock Text="{Binding URLText}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5"/>
-
-                            </Button>
-
-                        </StackPanel>
-
-                    </DataTemplate>
-
-                </ListBox.ItemTemplate>
-
-            </ListBox>
-
-        </ScrollViewer>
+        <ScrollViewer x:Name="Scroll_Panel" Grid.Row="2" Margin="0,0,0,24"></ScrollViewer>
 
         <!-- ステータスバー -->
         <StatusBar x:Name="StatusBar" Grid.Row="2" Height="24" VerticalAlignment="Bottom">

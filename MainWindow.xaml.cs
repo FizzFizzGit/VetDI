@@ -22,8 +22,6 @@ namespace VetDI {
         //コンストラクタ
         public MainWindow () {
             InitializeComponent ();
-            ListItems = new ObservableCollection<ListItem> ();
-            this.DataContext = ListItems;
             this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
 
@@ -38,25 +36,20 @@ namespace VetDI {
         }
         private void Button_Submit_Click (object sender, RoutedEventArgs e) { }
 
-        private void Button_Erase_Click (object sender, RoutedEventArgs e) {
-            int itemIndex = URLList.SelectedIndex;
-
-            if (itemIndex >= 0) { ListItems.RemoveAt (index: itemIndex); }
-
-        }
-
         private void OnGotFocusHandler (object sender, RoutedEventArgs e) {
-            if (URL_Text.Text == TEXTBOX_DEFAULT_TEXT) { URL_Text.Text = ""; }
+            if (Keyword.Text == TEXTBOX_DEFAULT_TEXT) { Keyword.Text = ""; }
 
         }
 
         private void OnLostFocusHandler (object sender, RoutedEventArgs e) {
-            if (URL_Text.Text == "") {
-                URL_Text.Text = TEXTBOX_DEFAULT_TEXT;
-                URL_Text.Background = Brushes.Transparent;
+            if (Keyword.Text == "") {
+                Keyword.Text = TEXTBOX_DEFAULT_TEXT;
+                Keyword.Background = Brushes.Transparent;
 
             }
 
         }
 
     }
+
+}
