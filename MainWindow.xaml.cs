@@ -1,4 +1,5 @@
 ﻿using System;
+using SQLite;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Windows;
@@ -17,7 +18,7 @@ namespace VetDI {
 
         //メンバ変数
         private const string ABOUT_DESCRIPTION = "about\n\n";
-        private const string TEXTBOX_DEFAULT_TEXT = "検索";
+        private const string SEARCH_DEFAULT_TEXT = "検索";
 
         //コンストラクタ
         public MainWindow () {
@@ -37,13 +38,13 @@ namespace VetDI {
         private void Button_Submit_Click (object sender, RoutedEventArgs e) { }
 
         private void OnGotFocusHandler (object sender, RoutedEventArgs e) {
-            if (Keyword.Text == TEXTBOX_DEFAULT_TEXT) { Keyword.Text = ""; }
+            if (Keyword.Text == SEARCH_DEFAULT_TEXT) { Keyword.Text = ""; }
 
         }
 
         private void OnLostFocusHandler (object sender, RoutedEventArgs e) {
             if (Keyword.Text == "") {
-                Keyword.Text = TEXTBOX_DEFAULT_TEXT;
+                Keyword.Text = SEARCH_DEFAULT_TEXT;
                 Keyword.Background = Brushes.Transparent;
 
             }
