@@ -12,7 +12,7 @@
     Style="{StaticResource window_common}">
 
     <Window.Resources>
-        <ResourceDictionary Source="/WindowStyle.xaml"/>
+        <ResourceDictionary Source="Themes/WindowStyle.xaml"/>
 
     </Window.Resources>
 
@@ -29,6 +29,7 @@
 
         </Menu>
 
+        <!-- メインビュー -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -63,6 +64,7 @@
                     <Button x:Name="Button_Submit"
                         Grid.Column="1"
                         Content="Search"
+                        FontSize="16"
                         Click="Button_Submit_Click"
                         Style="{StaticResource Gray_RoundedButtonStyle}">
 
@@ -70,7 +72,6 @@
 
                 </Grid>
 
-                <!-- メインビュー -->
                 <ScrollViewer x:Name="Scroll_Panel" Grid.Row="1" Margin="0,0,0,24">
                     <DataGrid Name="dataGrid"></DataGrid>
 
@@ -78,7 +79,40 @@
 
             </Grid>
 
-            <StackPanel Grid.Column="1"/>
+            <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                <Button x:Name="Button_1"
+                    Content="詳細"
+                    FontSize="40"
+                    Height="80"
+                    Style="{StaticResource Gray_RoundedButtonStyle_Jp}">
+
+                </Button>
+
+                <Button x:Name="Button_2"
+                    Content="印刷"
+                    FontSize="40"
+                    Height="80"
+                    Style="{StaticResource Gray_RoundedButtonStyle_Jp}">
+
+                </Button>
+
+                <Button x:Name="Button_3"
+                    Content="新規"
+                    FontSize="40"
+                    Height="80"
+                    Style="{StaticResource Gray_RoundedButtonStyle_Jp}">
+
+                </Button>
+
+                <Button x:Name="Button_4"
+                    Content="変換"
+                    FontSize="40"
+                    Height="80"
+                    Style="{StaticResource Gray_RoundedButtonStyle_Jp}">
+
+                </Button>
+
+            </StackPanel>
 
         </Grid>
 

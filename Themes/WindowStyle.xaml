@@ -5,9 +5,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:VetDI"
     mc:Ignorable="d">
+    
+    <!-- 角丸ボタン -->
     <Style x:Key="_RoundedButtonStyle" TargetType="Button">
         <Setter Property="FontFamily" Value="Century Gothic"/>
-        <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="UltraBold"/>
         <Setter Property="Margin" Value="0,5,5,5"/>
         <Setter Property="Template">
@@ -33,6 +34,39 @@
     </Style>
 
     <Style x:Key="Red_RoundedButtonStyle" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle}">
+        <Setter Property="Background" Value="#dc143c"/>
+        <Setter Property="Foreground" Value="White"/>
+
+    </Style>
+
+    <!-- 日本語対応角丸ボタン -->
+    <Style x:Key="_RoundedButtonStyle_Jp" TargetType="Button">
+        <Setter Property="FontFamily" Value="ＭＳ Ｐゴシック"/>
+        <Setter Property="FontWeight" Value="UltraBold"/>
+        <Setter Property="Margin" Value="0,5,5,5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="3">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                        </Border>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="Gray_RoundedButtonStyle_Jp" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle_Jp}">
+        <Setter Property="Background" Value="#474747"/>
+        <Setter Property="Foreground" Value="White"/>
+
+    </Style>
+
+    <Style x:Key="Red_RoundedButtonStyle_Jp" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle_Jp}">
         <Setter Property="Background" Value="#dc143c"/>
         <Setter Property="Foreground" Value="White"/>
 
