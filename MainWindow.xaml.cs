@@ -1,5 +1,4 @@
 ﻿using System;
-using SQLite;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Windows;
@@ -23,6 +22,27 @@ namespace VetDI {
         //コンストラクタ
         public MainWindow () {
             InitializeComponent ();
+            dataGrid.ItemsSource = new ObservableCollection<Instructions>{
+                new Instructions {
+                    Serial=20130011,
+                    Issuing=111111,
+                    Name="(有)大窪ファーム",
+                    Address="志布志市松山町新橋３８２５",
+                    Phone="099-487-2690",
+                    Cause="AR・豚丹毒の予防",
+                    Drugname="AR-BP豚丹毒混合不活化ワクチン",
+                    Drugqty="50ml*3",
+                    Species="母豚",
+                    Headage="１５頭",
+                    Age="１～３歳齢",
+                    Aspect="無",
+                    Regimen="筋注",
+                    Dosage="5ml/頭、２回投与",
+                    Taking="分娩前１ヶ月、２ヶ月の２回接種",
+                    Holidays="無",
+                    Other="無"
+                }
+            };
             this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
 
