@@ -22,7 +22,7 @@ namespace VetDI {
         //コンストラクタ
         public MainWindow () {
             InitializeComponent ();
-            dataGrid.ItemsSource = new ObservableCollection<Instructions>{
+            DataView.dataGrid.ItemsSource = new ObservableCollection<Instructions>{
                 new Instructions {
                     Serial=20130011,
                     Issuing=111111,
@@ -58,14 +58,14 @@ namespace VetDI {
         private void Button_Submit_Click (object sender, RoutedEventArgs e) { }
 
         private void OnGotFocusHandler (object sender, RoutedEventArgs e) {
-            if (Keyword.Text == SEARCH_DEFAULT_TEXT) { Keyword.Text = ""; }
+            if (DataView.Keyword.Text == SEARCH_DEFAULT_TEXT) { DataView.Keyword.Text = ""; }
 
         }
 
         private void OnLostFocusHandler (object sender, RoutedEventArgs e) {
-            if (Keyword.Text == "") {
-                Keyword.Text = SEARCH_DEFAULT_TEXT;
-                Keyword.Background = Brushes.Transparent;
+            if (DataView.Keyword.Text == "") {
+                DataView.Keyword.Text = SEARCH_DEFAULT_TEXT;
+                DataView.Keyword.Background = Brushes.Transparent;
 
             }
 
