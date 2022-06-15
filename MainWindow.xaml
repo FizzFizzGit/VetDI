@@ -9,6 +9,7 @@
     Width="450"
     ResizeMode="CanResizeWithGrip"
     Title="VetDI"
+    ContentRendered="Window_ContentRendered"
     Style="{StaticResource window_common}">
 
     <Window.Resources>
@@ -38,45 +39,8 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition/>
-
-                </Grid.RowDefinitions>
-
-                <!-- 検索バー -->
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="100"/>
-
-                    </Grid.ColumnDefinitions>
-
-                    <TextBox x:Name="Keyword"
-                        Grid.Column="0"
-                        VerticalContentAlignment="Center"
-                        Text="検索"
-                        GotFocus="OnGotFocusHandler"
-                        LostFocus="OnLostFocusHandler">
-
-                    </TextBox>
-
-                    <Button x:Name="Button_Submit"
-                        Grid.Column="1"
-                        Content="Search"
-                        FontSize="16"
-                        Click="Button_Submit_Click"
-                        Style="{StaticResource Gray_RoundedButtonStyle}">
-
-                    </Button>
-
-                </Grid>
-
-                <ScrollViewer x:Name="Scroll_Panel" Grid.Row="1" Margin="0,0,0,24">
-                    <DataGrid Name="dataGrid"></DataGrid>
-
-                </ScrollViewer>
-
+                <local:MainView x:Name="DataView"/>
+                
             </Grid>
 
             <StackPanel Grid.Column="1" Margin="5,0,0,0">
