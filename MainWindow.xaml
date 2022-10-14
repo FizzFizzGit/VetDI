@@ -9,7 +9,6 @@
     Width="450"
     ResizeMode="CanResizeWithGrip"
     Title="VetDI"
-    ContentRendered="Window_ContentRendered"
     Style="{StaticResource window_common}">
 
     <Window.Resources>
@@ -17,11 +16,11 @@
 
     </Window.Resources>
 
+    <!-- ウインドウ全体 -->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-
+            <RowDefinition Height="Auto"/> <!-- メニューバー -->
+            <RowDefinition/>               <!-- メインビュー -->
         </Grid.RowDefinitions>
 
         <!-- メニューバー -->
@@ -33,16 +32,53 @@
         <!-- メインビュー -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>             <!-- データ表示 -->
+                <ColumnDefinition Width="150"/> <!-- メインボタン -->
 
             </Grid.ColumnDefinitions>
 
+            <!-- データ表示 -->
             <Grid Grid.Column="0">
-                <local:MainView x:Name="DataView"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/> <!-- 検索バー -->
+                    <RowDefinition/>             <!-- データグリッド -->
+                </Grid.RowDefinitions>
                 
+                <!-- 検索バー -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>             <!-- 検索ボックス -->
+                        <ColumnDefinition Width="100"/> <!-- 検索ボタン -->
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="Keyword"
+                        Grid.Column="0"
+                        VerticalContentAlignment="Center"
+                        Text="検索">
+
+                    </TextBox>
+
+                    <Button x:Name="Button_Submit"
+                        Grid.Column="1"
+                        Content="Search"
+                        FontSize="16"
+                        Click="Button_Submit_Click"
+                        Style="{StaticResource Gray_RoundedButtonStyle}">
+
+                    </Button>
+
+                </Grid>
+                
+                <!-- データグリッド -->
+                <Grid x:Name="Scroll_Panel" Grid.Row="1" Margin="0,0,0,24">
+                    <DataGrid Name="dataGrid1"></DataGrid>
+
+                </Grid>
+
             </Grid>
 
+            <!-- メインボタン -->
             <StackPanel Grid.Column="1" Margin="5,0,0,0">
                 <Button x:Name="Button_1"
                     Content="詳細"
