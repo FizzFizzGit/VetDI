@@ -7,7 +7,7 @@
 
     <Application.Resources>
         <Style x:Key="window_common" TargetType="Window">
-            <Setter Property="Icon" Value="F:\VSCWorkSpace\C#WPF\VetDI\Resource\Icon.ico"/>
+            <Setter Property="Icon" Value="H:\VSCWorkSpace\C#WPF\VetDI\Resource\Icon.ico"/>
 
         </Style>
         

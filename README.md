@@ -10,8 +10,8 @@
 
 ### 動作環境
 
->* .NET5.0がインストールされたWindowsPC上で動作します。インストールしていない場合以下リンクよりインストールして下さい。  
->x64用.NET5.0  
+>* .NET6.0がインストールされたWindowsPC上で動作します。インストールしていない場合以下リンクよりインストールして下さい。  
+>x64用.NET6.0  
 >[ダウンロード](https://dotnet.microsoft.com/download/dotnet/thank-you/runtime-desktop-5.0.7-windows-x64-installer
 )
 
