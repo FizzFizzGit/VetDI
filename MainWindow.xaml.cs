@@ -65,7 +65,6 @@ namespace VetDI {
         private void OnLostFocusHandler (object sender, RoutedEventArgs e) {
             if (Keyword.Text == "") {
                 Keyword.Text = SEARCH_DEFAULT_TEXT;
-                Keyword.Background = Brushes.Transparent;
 
             }
 
