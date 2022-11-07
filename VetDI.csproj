@@ -15,7 +15,6 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="*"/>
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116"/>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.116"/>
   </ItemGroup>
 </Project>
