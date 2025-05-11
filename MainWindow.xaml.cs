@@ -1,6 +1,4 @@
-﻿using System.Data;
-using System.Windows;
-using System.Data.SQLite;
+﻿using System.Windows;
 
 namespace VetDI
 {
@@ -19,6 +17,7 @@ namespace VetDI
             InitializeComponent ();
             Sqlite cls = new Sqlite();
             cls.Init(this);
+            cls.Test();
             this.Loaded += MainWindow_Loaded;
             this.Closing += MainWindow_Closing;
 

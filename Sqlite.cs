@@ -1,5 +1,4 @@
 using System.Data;
-using System.Windows;
 using System.Data.SQLite;
 
 namespace VetDI{
@@ -23,12 +22,19 @@ namespace VetDI{
             "holidays TEXT NOT NULL," +
             "other TEXT NOT NULL)";
         private SQLiteConnection connection;
+        private MainWindow View;
         public void Init(MainWindow par){
             connection = SQLiteController.GetConnection();
             connection.Open();
             var cmd = new SQLiteCommand(connection);
             cmd.CommandText = NewDBSQL;
             cmd.ExecuteNonQuery();
+            View = par;
+        }
+        
+        //testing
+        public void Test(){
+            var cmd = new SQLiteCommand(connection);
             cmd.InsertVDI(20130011, 
                 111111, 
                 "(有)大窪ファーム", 
@@ -46,6 +52,8 @@ namespace VetDI{
                 "分娩前１ヶ月、２ヶ月の２回接種",
                 "無",
                 "無");
+        }
+        public void UpdateDataGrid(){
             // データを全件取得する
             SQLiteDataAdapter adapter = new SQLiteDataAdapter("SELECT * FROM vdi", connection);
 
@@ -54,8 +62,7 @@ namespace VetDI{
             adapter.Fill(dataTable);
 
             // dataTableをDataGridのDataContextにセットする
-            par.dataGrid1.DataContext = dataTable;
-
+            View.dataGrid1.DataContext = dataTable;
         }
     }
     public static class SQLiteController{
@@ -64,7 +71,6 @@ namespace VetDI{
             var sbc = new SQLiteConnectionStringBuilder{DataSource = DBFile};
             return new SQLiteConnection(sbc.ToString());
         }
-
         //MethodExtended from SQLiteCommand
         public static int InsertVDI(this SQLiteCommand cmd, int serial, int issuing, string name, string address, string phone, string cause, string dragname,
             string dragqty, string species, string headage, string age, string aspect, string regimen, string dosage, string taking, string holidays, string other){
