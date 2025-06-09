@@ -5,43 +5,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:VetDI"
     mc:Ignorable="d">
-    
-    <!-- 角丸ボタン -->
-    <Style x:Key="_RoundedButtonStyle" TargetType="Button">
-        <Setter Property="FontFamily" Value="Century Gothic"/>
-        <Setter Property="FontWeight" Value="UltraBold"/>
-        <Setter Property="Margin" Value="0,5,5,5"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                        <Border Name="border" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="3">
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                        </Border>
-
-                </ControlTemplate>
-
-            </Setter.Value>
-
-        </Setter>
-
+    <!-- 共通リソース -->
+    <Style x:Key="window_common" TargetType="Window">
+        <Setter Property="Icon" Value="/VetDI;component/Resource/Icon.ico"/>
     </Style>
 
-    <Style x:Key="Gray_RoundedButtonStyle" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle}">
-        <Setter Property="Background" Value="#474747"/>
-        <Setter Property="Foreground" Value="White"/>
-
-    </Style>
-
-    <Style x:Key="Red_RoundedButtonStyle" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle}">
-        <Setter Property="Background" Value="#dc143c"/>
-        <Setter Property="Foreground" Value="White"/>
-
-    </Style>
-
+    <!-- ボタン雛形 -->
     <!-- 日本語対応角丸ボタン -->
     <Style x:Key="_RoundedButtonStyle_Jp" TargetType="Button">
-        <Setter Property="FontFamily" Value="ＭＳ Ｐゴシック"/>
+        <Setter Property="FontFamily" Value="游ゴシック"/>
         <Setter Property="FontWeight" Value="UltraBold"/>
         <Setter Property="Margin" Value="0,5,5,5"/>
         <Setter Property="Template">
@@ -60,15 +33,32 @@
 
     </Style>
 
-    <Style x:Key="Gray_RoundedButtonStyle_Jp" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle_Jp}">
+    <!-- 実装用スタイル -->
+    <!-- 日本語対応角丸ボタン -->
+    <Style x:Key="EnabledButton" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle_Jp}">
         <Setter Property="Background" Value="#474747"/>
         <Setter Property="Foreground" Value="White"/>
+        <Style.Triggers>
+            <!-- マウスオーバーで色変更 -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="gray"/>
+                <Setter Property="Foreground" Value="White"/>
+
+            </Trigger>
+            <!-- 押下時に色変更 -->
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#474747"/>
+                <Setter Property="Foreground" Value="White"/>
+
+            </Trigger>
+
+        </Style.Triggers>
 
     </Style>
 
-    <Style x:Key="Red_RoundedButtonStyle_Jp" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle_Jp}">
-        <Setter Property="Background" Value="#dc143c"/>
-        <Setter Property="Foreground" Value="White"/>
+    <Style x:Key="DisabledButton" TargetType="Button" BasedOn="{StaticResource _RoundedButtonStyle_Jp}">
+        <Setter Property="Background" Value="LightGray"/>
+        <Setter Property="Foreground" Value="silver"/>
 
     </Style>
 

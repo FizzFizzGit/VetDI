@@ -5,12 +5,4 @@
     xmlns:local="clr-namespace:VetDI"
     StartupUri="MainWindow.xaml">
 
-    <Application.Resources>
-        <Style x:Key="window_common" TargetType="Window">
-            <Setter Property="Icon" Value="/VetDI;component/Resource/Icon.ico"/>
-
-        </Style>
-        
-    </Application.Resources>
-
 </Application>

@@ -14,7 +14,7 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite" Version="1.0.119"/>
-    <Resource Include="Resource\Icon.ico" CopyToOutputDirectory="PreserveNewest"/>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.116"/>
+    <Resource Include="Resource\\Icon.ico" CopyToOutputDirectory="PreserveNewest"/>
   </ItemGroup>
 </Project>
