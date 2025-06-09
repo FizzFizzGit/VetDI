@@ -8,12 +8,8 @@
     Height="300"
     Width="450"
     ResizeMode="CanResizeWithGrip"
-    Title="VetDI">
-
-    <Window.Resources>
-        <ResourceDictionary Source="Themes/WindowStyle.xaml"/>
-
-    </Window.Resources>
+    Title="VetDI"
+    Style="{StaticResource window_common}">
 
     <!-- ウインドウ全体 -->
     <Grid>
