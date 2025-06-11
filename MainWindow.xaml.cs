@@ -17,12 +17,6 @@ namespace VetDI
             DataContext = new MainViewModel();
             Loaded += MainWindow_Loaded;
             Closing += MainWindow_Closing;
-            // 起動時にテストデータを追加
-            Test.Run();
-            // データ再読み込み
-            if (DataContext is MainViewModel vm) {
-                vm.LoadDataFromSQLite();
-            }
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -32,7 +26,12 @@ namespace VetDI
             // 必要ならe.Cancel = true; でキャンセルも可能
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e) { }
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e) {
+            if (DataContext is MainViewModel vm) {
+                vm.Keyword = SEARCH_DEFAULT_TEXT; // 初期キーワード設定
+                vm.LoadDataFromSQLite(); // データの読み込み
+            }
+        }
 
         private void Button_About_Click(object sender, RoutedEventArgs e) {
             MessageBox.Show(messageBoxText: ABOUT_DESCRIPTION, caption: "About");

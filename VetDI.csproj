@@ -38,6 +38,12 @@
     <Resource Include="Resource\Icon.ico" CopyToOutputDirectory="PreserveNewest"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Vdi\Resources\*.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <PropertyGroup>
     <DebugType>portable</DebugType>
     <JustMyCode>false</JustMyCode>

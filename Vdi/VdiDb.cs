@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
@@ -5,17 +6,17 @@ using System.IO;
 namespace VetDI.Vdi {
     public class VdiDb {
         private static string GetTableDefinition() {
-            var path = Path.Combine("Resources", "vdi_table.sql");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Vdi", "Resources", "vdi_table.sql");
             return File.ReadAllText(path);
         }
 
         private static string GetInsertSql() {
-            var path = Path.Combine("Resources", "vdi_insert.sql");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Vdi", "Resources", "vdi_insert.sql");
             return File.ReadAllText(path);
         }
 
         private static string GetSelectAllSql() {
-            var path = Path.Combine("Resources", "vdi_select_all.sql");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Vdi", "Resources", "vdi_select_all.sql");
             return File.ReadAllText(path);
         }
 
