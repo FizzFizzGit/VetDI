@@ -16,6 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/> <!-- メニューバー -->
             <RowDefinition/>               <!-- メインビュー -->
+            <RowDefinition Height="Auto"/> <!-- ステータスバー -->
         </Grid.RowDefinitions>
 
         <!-- メニューバー -->
@@ -68,14 +69,29 @@
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="5,0,0,0">
-
-                    <!-- データグリッドのプレースホルダー -->
-                    <TextBlock Text="データグリッドがここに表示されます"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontSize="16"
-                        Foreground="#474747"/>
-
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,5,0,0" HorizontalAlignment="Stretch">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="シリアル" Binding="{Binding Serial}" Width="100"/>
+                                <DataGridTextColumn Header="発行日" Binding="{Binding Issuing}" Width="100"/>
+                                <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="150"/>
+                                <DataGridTextColumn Header="住所" Binding="{Binding Address}" Width="200"/>
+                                <DataGridTextColumn Header="電話" Binding="{Binding Phone}" Width="120"/>
+                                <DataGridTextColumn Header="原因" Binding="{Binding Cause}" Width="120"/>
+                                <DataGridTextColumn Header="処方" Binding="{Binding Prescription}" Width="150"/>
+                                <DataGridTextColumn Header="量" Binding="{Binding Amount}" Width="80"/>
+                                <DataGridTextColumn Header="種別" Binding="{Binding Type}" Width="80"/>
+                                <DataGridTextColumn Header="頭数" Binding="{Binding Count}" Width="80"/>
+                                <DataGridTextColumn Header="年齢" Binding="{Binding Age}" Width="80"/>
+                                <DataGridTextColumn Header="所見" Binding="{Binding Aspect}" Width="100"/>
+                                <DataGridTextColumn Header="投薬法" Binding="{Binding Regimen}" Width="100"/>
+                                <DataGridTextColumn Header="投与量" Binding="{Binding Dosage}" Width="100"/>
+                                <DataGridTextColumn Header="投与時期" Binding="{Binding Taking}" Width="120"/>
+                                <DataGridTextColumn Header="休薬" Binding="{Binding Holidays}" Width="80"/>
+                                <DataGridTextColumn Header="その他" Binding="{Binding Other}" Width="120"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
                 </Grid>
 
             </Grid>
@@ -121,7 +137,6 @@
         <!-- ステータスバー -->
         <StatusBar x:Name="StatusBar" Grid.Row="2" Height="24" VerticalAlignment="Bottom">
             <TextBlock x:Name="StatusText" FontSize="12" VerticalAlignment="Center"/>
-
         </StatusBar>
 
     </Grid>

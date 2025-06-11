@@ -17,6 +17,12 @@ namespace VetDI
             DataContext = new MainViewModel();
             Loaded += MainWindow_Loaded;
             Closing += MainWindow_Closing;
+            // 起動時にテストデータを追加
+            Test.Run();
+            // データ再読み込み
+            if (DataContext is MainViewModel vm) {
+                vm.LoadDataFromSQLite();
+            }
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e) {

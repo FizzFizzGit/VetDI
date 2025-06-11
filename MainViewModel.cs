@@ -1,9 +1,11 @@
 using System.ComponentModel;
+using System.Collections.ObjectModel;
+using VetDI.Vdi;
 
 namespace VetDI {
     public class MainViewModel : INotifyPropertyChanged {
         private const string KeywordSearchDefaultText = "検索";
-        private string _keyword = KeywordSearchDefaultText; // 初期値をデフォルトテキストに設定
+        private string _keyword = KeywordSearchDefaultText;
         public string Keyword {
             get => _keyword;
             set {
@@ -13,6 +15,7 @@ namespace VetDI {
                 }
             }
         }
+        public ObservableCollection<MainDataType> Items { get; } = new ObservableCollection<MainDataType>();
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -23,10 +26,8 @@ namespace VetDI {
         }
 
         public void OnSubmit() {
-            // 検索処理の実装
-            if (string.IsNullOrEmpty(Keyword)) { return; } // キーワードが空の場合は何もしない
-            else if (Keyword == KeywordSearchDefaultText) { return; } // デフォルトテキストの場合も何もしない
-            else { Keyword = KeywordSearchDefaultText; } // 検索後にデフォルトテキストに戻す
+            // 検索処理の実装（例：キーワードでフィルタリングなど）
+            LoadDataFromSQLite();
         }
 
         public void ClearKeywordIfActivate() {
@@ -37,6 +38,14 @@ namespace VetDI {
         public void SetKeywordIfDeactivate() {
             if (Keyword == "")
                 Keyword = KeywordSearchDefaultText;
+        }
+
+        public void LoadDataFromSQLite() {
+            Items.Clear();
+            var vdiDb = new VdiDb();
+            foreach (var item in vdiDb.SelectAll()) {
+                Items.Add(item);
+            }
         }
     }
 }
