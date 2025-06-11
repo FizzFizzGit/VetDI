@@ -50,7 +50,7 @@
                     <TextBox x:Name="Keyword"
                         Grid.Column="0"
                         VerticalContentAlignment="Center"
-                        Text="検索"
+                        Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}"
                         GotFocus="OnGotFocusHandler"
                         LostFocus="OnLostFocusHandler">
 

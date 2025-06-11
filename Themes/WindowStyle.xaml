@@ -62,24 +62,6 @@
 
     </Style>
 
-    <!-- マウスオーバーで選択可能にするやつ -->
-    <Style TargetType="ListBoxItem">
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="IsSelected" Value="True"/>
-
-            </Trigger>
-
-        </Style.Triggers>
-
-    </Style>
-
-    <Style TargetType="ListBox">
-        <Setter Property="Margin" Value="5,0,0,0"/>
-        <Setter Property="BorderBrush" Value="#474747"/>
-
-    </Style>
-
     <Style TargetType="TextBox">
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Padding" Value="5"/>

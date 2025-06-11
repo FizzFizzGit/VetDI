@@ -33,17 +33,21 @@ namespace VetDI
         private void Button_About_Click (object sender, RoutedEventArgs e) {
             MessageBox.Show(messageBoxText: ABOUT_DESCRIPTION, caption: "About");
         }
-        
-        private void Button_Submit_Click (object sender, RoutedEventArgs e) { }
+
+        private void Button_Submit_Click(object sender, RoutedEventArgs e) {
+            if (DataContext is MainViewModel vm){
+                vm.OnSubmit();
+            }
+        }
 
         private void OnGotFocusHandler (object sender, RoutedEventArgs e) {
-            if (DataContext is MainViewModel vm)
+            if (DataContext is MainViewModel vm){
                 vm.ClearKeywordIfActivate();
+            }
         }
 
         private void OnLostFocusHandler (object sender, RoutedEventArgs e) {
-            if (DataContext is MainViewModel vm)
-            {
+            if (DataContext is MainViewModel vm){
                 vm.SetKeywordIfDeactivate();
             }
         }
