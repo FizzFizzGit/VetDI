@@ -1,0 +1,143 @@
+using System.Data;
+using System.Data.SQLite;
+
+namespace VetDI{
+    public class Sqlite{
+        private const string Table_Definition = "CREATE TABLE IF NOT EXISTS vdi(" + 
+            "serial INTEGER NOT NULL PRIMARY KEY," +
+            "issuing INTEGER NOT NULL," +
+            "name TEXT NOT NULL," +
+            "address TEXT NOT NULL," +
+            "phone TEXT NOT NULL," +
+            "cause TEXT NOT NULL," +
+            "Prescription TEXT NOT NULL," +
+            "amount TEXT NOT NULL," +
+            "type TEXT NOT NULL," +
+            "count TEXT NOT NULL," +
+            "age TEXT NOT NULL," +
+            "aspect TEXT NOT NULL," +
+            "regimen TEXT NOT NULL," +
+            "dosage TEXT NOT NULL," +
+            "taking TEXT NOT NULL," +
+            "holidays TEXT NOT NULL," +
+            "other TEXT NOT NULL)";
+        private SQLiteConnection connection;
+        private MainWindow View;
+        public Sqlite(MainWindow par){
+            connection = SQLiteController.GetConnection();
+            connection.Open();
+            var cmd = new SQLiteCommand(connection);
+            cmd.CommandText = Table_Definition;
+            cmd.ExecuteNonQuery();
+            View = par;
+        }
+        
+        //testing
+        public void Test(){
+            var cmd = new SQLiteCommand(connection);
+            cmd.InsertVDI(20130011, 
+                111111, 
+                "(有)大窪ファーム", 
+                "志布志市松山町新橋３８２５", 
+                "099-487-2690",
+                "AR・豚丹毒の予防",
+                "AR-BP豚丹毒混合不活化ワクチン",
+                "50ml*3",
+                "母豚",
+                "１５頭",
+                "１～３歳齢",
+                "無",
+                "筋注",
+                "5ml/頭、２回投与",
+                "分娩前１ヶ月、２ヶ月の２回接種",
+                "無",
+                "無");
+        }
+        public void UpdateDataGrid(){
+            // データを全件取得する
+            SQLiteDataAdapter DataAdapter = new SQLiteDataAdapter("SELECT * FROM vdi", connection);
+
+            // adapterからDataTableにデータを読み込む
+            DataTable dataTable = new DataTable();
+            DataAdapter.Fill(dataTable);
+
+            // dataTableをDataGridのDataContextにセットする
+            View.DataGrid.DataContext = dataTable;
+        }
+    }
+    public static class SQLiteController{
+        private const string DBFile = "vdi.db";
+        public static SQLiteConnection GetConnection(){
+            var sbc = new SQLiteConnectionStringBuilder{DataSource = DBFile};
+            return new SQLiteConnection(sbc.ToString());
+        }
+        //MethodExtended from SQLiteCommand
+        public static int InsertVDI(this SQLiteCommand cmd, int serial, int issuing, string name, string address, string phone, string cause, string Prescription,
+            string amount, string type, string count, string age, string aspect, string regimen, string dosage, string taking, string holidays, string other){
+            cmd.CommandText = "INSERT INTO vdi(serial, issuing, name, address, phone, cause, Prescription, amount, type, count, age, aspect, regimen, dosage, taking, holidays, other) " +
+                $"VALUES({serial}, {issuing}, '{name}', '{address}', '{phone}', '{cause}', '{Prescription}', '{amount}', '{type}', '{count}', '{age}', '{aspect}', '{regimen}', '{dosage}', '{taking}', '{holidays}', '{other}')";
+            return cmd.ExecuteNonQuery();
+        }
+    }
+}
+
+private void LoadDataFromSQLite() {
+            // SQLite接続文字列
+            string connectionString = "Data Source=vdi.db;Version=3;";
+
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                // SQLクエリ
+                string query = "SELECT Serial, Issuing, Name, Address, Phone, Cause, Prescription, Amount, Type, Count, Age, Aspect, Regimen, Dosage, Taking, Holidays, Other FROM YourTableName";
+
+                using (var command = new SQLiteCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // データをMainDataTypeにマッピング
+                        MainCollectionProperty.Add(new MainDataType
+                        {
+                            Serial = reader.GetInt32(reader.GetOrdinal("Serial")),
+                            Issuing = reader.GetInt32(reader.GetOrdinal("Issuing")),
+                            Name = reader["Name"].ToString(),
+                            Address = reader["Address"].ToString(),
+                            Phone = reader["Phone"].ToString(),
+                            Cause = reader["Cause"].ToString(),
+                            Prescription = reader["Prescription"].ToString(),
+                            Amount = reader["Amount"].ToString(),
+                            Type = reader["Type"].ToString(),
+                            Count = reader["Count"].ToString(),
+                            Age = reader["Age"].ToString(),
+                            Aspect = reader["Aspect"].ToString(),
+                            Regimen = reader["Regimen"].ToString(),
+                            Dosage = reader["Dosage"].ToString(),
+                            Taking = reader["Taking"].ToString(),
+                            Holidays = reader["Holidays"].ToString(),
+                            Other = reader["Other"].ToString()
+                        });
+                    }
+                }
+            }
+        }
+        public class MainDataType {
+            public int Serial { get; set; }
+            public int Issuing { get; set; }
+            public string Name { get; set; }
+            public string Address { get; set; }
+            public string Phone { get; set; }
+            public string Cause { get; set; }
+            public string Prescription { get; set; }
+            public string Amount { get; set; }
+            public string Type { get; set; }
+            public string Count { get; set; }
+            public string Age { get; set; }
+            public string Aspect { get; set; }
+            public string Regimen { get; set; }
+            public string Dosage { get; set; }
+            public string Taking { get; set; }
+            public string Holidays { get; set; }
+            public string Other { get; set; }
+        }

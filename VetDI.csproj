@@ -7,14 +7,39 @@
     <TargetFramework>net9.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <!-- Debug用 -->
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <PublishSingleFile>false</PublishSingleFile>
+    <PublishTrimmed>false</PublishTrimmed>
+    <SelfContained>false</SelfContained>
+  </PropertyGroup>
+
+  <!-- Release用 -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <PublishReadyToRun>true</PublishReadyToRun>
     <PublishSingleFile>true</PublishSingleFile>
     <PublishTrimmed>false</PublishTrimmed>
     <SelfContained>false</SelfContained>
-    <Optimize>true</Optimize>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite" Version="1.0.119"/>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.116"/>
     <Resource Include="Resource\Icon.ico" CopyToOutputDirectory="PreserveNewest"/>
   </ItemGroup>
+
+  <PropertyGroup>
+    <DebugType>portable</DebugType>
+    <JustMyCode>false</JustMyCode>
+  </PropertyGroup>
 </Project>

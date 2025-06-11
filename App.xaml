@@ -4,13 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:VetDI"
     StartupUri="MainWindow.xaml">
-
+    
+    <!-- アプリケーション全体のリソース -->
     <Application.Resources>
-        <Style x:Key="window_common" TargetType="Window">
-            <Setter Property="Icon" Value="/VetDI;component/Resource/Icon.ico"/>
-
-        </Style>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/WindowStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 
 </Application>

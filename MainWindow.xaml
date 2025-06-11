@@ -11,11 +11,6 @@
     Title="VetDI"
     Style="{StaticResource window_common}">
 
-    <Window.Resources>
-        <ResourceDictionary Source="Themes/WindowStyle.xaml"/>
-
-    </Window.Resources>
-
     <!-- ウインドウ全体 -->
     <Grid>
         <Grid.RowDefinitions>
@@ -55,7 +50,7 @@
                     <TextBox x:Name="Keyword"
                         Grid.Column="0"
                         VerticalContentAlignment="Center"
-                        Text="検索"
+                        Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}"
                         GotFocus="OnGotFocusHandler"
                         LostFocus="OnLostFocusHandler">
 
@@ -66,15 +61,20 @@
                         Content="Search"
                         FontSize="16"
                         Click="Button_Submit_Click"
-                        Style="{StaticResource Gray_RoundedButtonStyle}">
+                        Style="{StaticResource EnabledButton}">
 
                     </Button>
 
                 </Grid>
-                
-                <!-- データグリッド -->
-                <Grid x:Name="Scroll_Panel" Grid.Row="1" Margin="0,0,0,24">
-                    <DataGrid Name="dataGrid1" ItemsSource="{Binding}" />
+
+                <Grid Grid.Row="1" Margin="5,0,0,0">
+
+                    <!-- データグリッドのプレースホルダー -->
+                    <TextBlock Text="データグリッドがここに表示されます"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Foreground="#474747"/>
 
                 </Grid>
 
@@ -86,7 +86,7 @@
                     Content="詳細"
                     FontSize="40"
                     Height="80"
-                    Style="{StaticResource Gray_RoundedButtonStyle_Jp}">
+                    Style="{StaticResource EnabledButton}">
 
                 </Button>
 
@@ -94,7 +94,7 @@
                     Content="印刷"
                     FontSize="40"
                     Height="80"
-                    Style="{StaticResource Gray_RoundedButtonStyle_Jp}">
+                    Style="{StaticResource EnabledButton}">
 
                 </Button>
 
@@ -102,7 +102,7 @@
                     Content="新規"
                     FontSize="40"
                     Height="80"
-                    Style="{StaticResource Gray_RoundedButtonStyle_Jp}">
+                    Style="{StaticResource EnabledButton}">
 
                 </Button>
 
@@ -110,7 +110,7 @@
                     Content="変換"
                     FontSize="40"
                     Height="80"
-                    Style="{StaticResource Gray_RoundedButtonStyle_Jp}">
+                    Style="{StaticResource EnabledButton}">
 
                 </Button>
 
