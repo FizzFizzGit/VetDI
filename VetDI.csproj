@@ -3,7 +3,7 @@
     <Version>1.2.0.0</Version>
     <Copyright>FizzFizz</Copyright>
     <OutputType>WinExe</OutputType>
-    <ApplicationIcon>Resource\Icon.ico</ApplicationIcon>
+    <ApplicationIcon>SRC/Resource/Icon.ico</ApplicationIcon>
     <TargetFramework>net9.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
@@ -33,15 +33,22 @@
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 
+  <!-- NuGetパッケージ・リソース関連 -->
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.116"/>
-    <Resource Include="Resource\Icon.ico" CopyToOutputDirectory="PreserveNewest"/>
+    <Resource Include="SRC/Resource/Icon.ico" />
   </ItemGroup>
 
+  <!-- SQLスクリプトの出力先コピー設定 -->
   <ItemGroup>
-    <None Update="Vdi\Resources\*.sql">
+    <None Update="SRC/Vdi/Resources/*.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <!-- WPFエントリポイント・XAMLリソース -->
+  <ItemGroup>
+    <ApplicationDefinition Include="SRC/App.xaml" />
   </ItemGroup>
 
   <PropertyGroup>

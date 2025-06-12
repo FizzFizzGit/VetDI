@@ -1,0 +1,200 @@
+﻿<Window x:Class="VetDI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VetDI"
+        mc:Ignorable="d"
+        Height="300"
+        Width="450"
+        ResizeMode="CanResizeWithGrip"
+        Title="VetDI"
+        Style="{StaticResource window_common}">
+
+    <!-- ウインドウ全体 -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- メニューバー -->
+            <RowDefinition/>
+            <!-- メインビュー -->
+            <RowDefinition Height="Auto"/>
+            <!-- ステータスバー -->
+        </Grid.RowDefinitions>
+
+        <!-- メニューバー -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="About"
+                    Click="Button_About_Click"/>
+
+        </Menu>
+
+        <!-- メインビュー -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <!-- データ表示 -->
+                <ColumnDefinition Width="150"/>
+                <!-- メインボタン -->
+
+            </Grid.ColumnDefinitions>
+
+            <!-- データ表示 -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <!-- 検索バー -->
+                    <RowDefinition/>
+                    <!-- データグリッド -->
+                </Grid.RowDefinitions>
+
+                <!-- 検索バー -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <!-- 検索ボックス -->
+                        <ColumnDefinition Width="100"/>
+                        <!-- 検索ボタン -->
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="Keyword"
+                             Grid.Column="0"
+                             VerticalContentAlignment="Center"
+                             Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}"
+                             GotFocus="OnGotFocusHandler"
+                             LostFocus="OnLostFocusHandler">
+
+                    </TextBox>
+
+                    <Button x:Name="Button_Submit"
+                            Grid.Column="1"
+                            Content="Search"
+                            FontSize="16"
+                            Click="Button_Submit_Click"
+                            Style="{StaticResource EnabledButton}">
+
+                    </Button>
+
+                </Grid>
+
+                <Grid Grid.Row="1"
+                        Margin="5,0,0,0">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto">
+                        <DataGrid ItemsSource="{Binding Items}"
+                                AutoGenerateColumns="False"
+                                CanUserAddRows="False"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Stretch">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="シリアル"
+                                        Binding="{Binding Serial}"
+                                        Width="100"/>
+                                <DataGridTextColumn Header="発行日"
+                                        Binding="{Binding Issuing}"
+                                        Width="100"/>
+                                <DataGridTextColumn Header="名前"
+                                        Binding="{Binding Name}"
+                                        Width="150"/>
+                                <DataGridTextColumn Header="住所"
+                                        Binding="{Binding Address}"
+                                        Width="200"/>
+                                <DataGridTextColumn Header="電話"
+                                        Binding="{Binding Phone}"
+                                        Width="120"/>
+                                <DataGridTextColumn Header="原因"
+                                        Binding="{Binding Cause}"
+                                        Width="120"/>
+                                <DataGridTextColumn Header="処方"
+                                        Binding="{Binding Prescription}"
+                                        Width="150"/>
+                                <DataGridTextColumn Header="量"
+                                        Binding="{Binding Amount}"
+                                        Width="80"/>
+                                <DataGridTextColumn Header="種別"
+                                        Binding="{Binding Type}"
+                                        Width="80"/>
+                                <DataGridTextColumn Header="頭数"
+                                        Binding="{Binding Count}"
+                                        Width="80"/>
+                                <DataGridTextColumn Header="年齢"
+                                        Binding="{Binding Age}"
+                                        Width="80"/>
+                                <DataGridTextColumn Header="所見"
+                                        Binding="{Binding Aspect}"
+                                        Width="100"/>
+                                <DataGridTextColumn Header="投薬法"
+                                        Binding="{Binding Regimen}"
+                                        Width="100"/>
+                                <DataGridTextColumn Header="投与量"
+                                        Binding="{Binding Dosage}"
+                                        Width="100"/>
+                                <DataGridTextColumn Header="投与時期"
+                                        Binding="{Binding Taking}"
+                                        Width="120"/>
+                                <DataGridTextColumn Header="休薬"
+                                        Binding="{Binding Holidays}"
+                                        Width="80"/>
+                                <DataGridTextColumn Header="その他"
+                                        Binding="{Binding Other}"
+                                        Width="120"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+
+            </Grid>
+
+            <!-- メインボタン -->
+            <StackPanel Grid.Column="1"
+                    Margin="5,0,0,0">
+                <Button x:Name="Button_1"
+                        Content="詳細"
+                        FontSize="40"
+                        Height="80"
+                        Style="{StaticResource EnabledButton}">
+
+                </Button>
+
+                <Button x:Name="Button_2"
+                        Content="印刷"
+                        FontSize="40"
+                        Height="80"
+                        Style="{StaticResource EnabledButton}">
+
+                </Button>
+
+                <Button x:Name="Button_3"
+                        Content="新規"
+                        FontSize="40"
+                        Height="80"
+                        Style="{StaticResource EnabledButton}">
+
+                </Button>
+
+                <Button x:Name="Button_4"
+                        Content="変換"
+                        FontSize="40"
+                        Height="80"
+                        Style="{StaticResource EnabledButton}"
+                        Click="Button_Convert_Click">
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+
+        <!-- ステータスバー -->
+        <StatusBar x:Name="StatusBar"
+                Grid.Row="2"
+                Height="24"
+                VerticalAlignment="Bottom">
+            <TextBlock x:Name="StatusText"
+                    FontSize="12"
+                    VerticalAlignment="Center"/>
+        </StatusBar>
+
+    </Grid>
+
+</Window>
