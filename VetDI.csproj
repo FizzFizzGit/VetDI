@@ -41,7 +41,14 @@
 
   <!-- SQLスクリプトの出力先コピー設定 -->
   <ItemGroup>
-    <None Update="SRC/Vdi/Resources/*.sql">
+    <None Update="SRC/Resource/*.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <!-- jsonファイル -->
+  <ItemGroup>
+    <None Update="SRC/Resource/*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

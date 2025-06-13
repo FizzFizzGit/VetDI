@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 
-namespace VetDI.Vdi {
+namespace VetDI {
     public static class VdiDbSelectHelper {
         public static List<MainDataType> ToMainDataTypeList(SQLiteDataReader reader) {
             var result = new List<MainDataType>();

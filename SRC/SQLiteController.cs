@@ -1,7 +1,7 @@
 using System;
 using System.Data.SQLite;
 using System.Collections.Generic;
-using VetDI.Vdi;
+using VetDI;
 
 namespace VetDI {
     public class SQLiteController {

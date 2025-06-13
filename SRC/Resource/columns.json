@@ -1,0 +1,19 @@
+[
+    { "Header": "シリアル", "Binding": "Serial", "Width": 100 },
+    { "Header": "発行日", "Binding": "Issuing", "Width": 100 },
+    { "Header": "名前", "Binding": "Name", "Width": 150 },
+    { "Header": "住所", "Binding": "Address", "Width": 200 },
+    { "Header": "電話", "Binding": "Phone", "Width": 120 },
+    { "Header": "原因", "Binding": "Cause", "Width": 120 },
+    { "Header": "処方", "Binding": "Prescription", "Width": 150 },
+    { "Header": "量", "Binding": "Amount", "Width": 80 },
+    { "Header": "種別", "Binding": "Type", "Width": 80 },
+    { "Header": "頭数", "Binding": "Count", "Width": 80 },
+    { "Header": "年齢", "Binding": "Age", "Width": 80 },
+    { "Header": "所見", "Binding": "Aspect", "Width": 100 },
+    { "Header": "投薬法", "Binding": "Regimen", "Width": 100 },
+    { "Header": "投与量", "Binding": "Dosage", "Width": 100 },
+    { "Header": "投与時期", "Binding": "Taking", "Width": 120 },
+    { "Header": "休薬", "Binding": "Holidays", "Width": 80 },
+    { "Header": "その他", "Binding": "Other", "Width": 120 }
+]

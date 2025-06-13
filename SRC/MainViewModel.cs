@@ -1,9 +1,7 @@
 using System.ComponentModel;
 using System.Collections.ObjectModel;
-using VetDI.Vdi;
 using System.Collections.Generic;
 using System.Linq;
-using VetDI.Csv;
 
 namespace VetDI {
     public class MainViewModel : INotifyPropertyChanged {
@@ -43,50 +41,49 @@ namespace VetDI {
                 Keyword = KeywordSearchDefaultText;
         }
 
-        public void LoadDataFromSQLite() {
+        public void LoadDataFromSQLite(string tableName = "MainTable") {
             Items.Clear();
-            var vdiDb = new VdiDb();
+            var vdiDb = new VdiDb(tableName);
             foreach (var item in vdiDb.SelectAll()) {
                 Items.Add(item);
             }
         }
 
         // CSVファイルを指定してDBに一括追加（マッピング対応）
-        public void ImportCsvToDb(string csvFilePath) {
-            var vdiDb = new VdiDb();
-            VetDI.Csv.CsvMapping mapping = VetDI.Csv.CsvMapping.Load();
+        public void ImportCsvToDb(string csvFilePath, string tableName = "MainTable") {
+            var vdiDb = new VdiDb(tableName);
+            CsvMapping mapping = CsvMapping.LoadOrCreate();
             List<string> fieldOrder = null;
-            if (mapping == null) {
-                // CSVの最初の行を読み込んで列数を取得
-                var firstLine = System.IO.File.ReadLines(csvFilePath).FirstOrDefault();
-                if (firstLine == null) return;
-                var columns = firstLine.Split(',');
-                // DBフィールド一覧
-                var dbFields = new List<string> {
-                    "Serial","Issuing","Name","Address","Phone","Cause","Prescription","Amount","Type","Count","Age","Aspect","Regimen","Dosage","Taking","Holidays","Other"
-                };
-                // マッピングダイアログ表示
-                var dialog = new VetDI.Csv.CsvMappingDialog(
-                    columns.Select((c, i) => $"列{i+1}").ToList(), dbFields);
+            // マッピングダイアログ表示（必要な場合のみ）
+            var firstLine = System.IO.File.ReadLines(csvFilePath).FirstOrDefault();
+            if (firstLine == null) return;
+            var columns = firstLine.Split(',');
+            var dbFields = typeof(MainDataType).GetProperties().Select(p => p.Name).ToList();
+            bool needMapping = mapping.FieldOrder == null || mapping.FieldOrder.Count != columns.Length;
+            if (needMapping) {
+                var dialog = new CsvMappingDialog(
+                    columns.Select((c, i) => $"列{i + 1}").ToList(), dbFields);
                 if (dialog.ShowDialog() == true) {
                     fieldOrder = dialog.GetFieldOrder();
-                    // 保存
-                    new VetDI.Csv.CsvMapping { FieldOrder = fieldOrder }.Save();
-                } else {
+                    mapping.FieldOrder = fieldOrder;
+                    mapping.Save();
+                }
+                else {
                     return; // キャンセル
                 }
-            } else {
+            }
+            else {
                 fieldOrder = mapping.FieldOrder;
             }
-            var items = VetDI.Csv.CsvImporter.ReadCsvWithMapping(csvFilePath, fieldOrder);
+            var items = CsvImporter.ReadCsvWithMapping(csvFilePath, fieldOrder);
             foreach (var item in items) {
                 vdiDb.InsertVDI(item);
             }
-            LoadDataFromSQLite(); // 画面リロード
+            LoadDataFromSQLite(tableName); // 画面リロード
         }
 
         // ファイルダイアログも含めてインポートをViewModelで完結
-        public void ImportCsvWithDialog() {
+        public void ImportCsvWithDialog(string tableName = "MainTable") {
             var dialog = new Microsoft.Win32.OpenFileDialog {
                 Filter = "CSVファイル (*.csv)|*.csv|すべてのファイル (*.*)|*.*",
                 Title = "CSVファイルを選択"
@@ -99,7 +96,7 @@ namespace VetDI {
                     System.Windows.MessageBoxImage.Question
                 );
                 if (result == System.Windows.MessageBoxResult.OK) {
-                    ImportCsvToDb(dialog.FileName);
+                    ImportCsvToDb(dialog.FileName, tableName);
                     System.Windows.MessageBox.Show("CSVからDBへのインポートが完了しました。", "インポート完了");
                 }
             }

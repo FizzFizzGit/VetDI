@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace VetDI.Vdi {
+namespace VetDI {
     public static class VdiDbParameterHelper {
         public static Dictionary<string, object> ToParameterDictionary(MainDataType data) {
             return new Dictionary<string, object> {
