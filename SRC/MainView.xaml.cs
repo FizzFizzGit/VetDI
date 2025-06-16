@@ -1,24 +1,18 @@
-﻿using System.Windows;
-using System.Text.Json;
+﻿using System;
 using System.IO;
+using System.Windows;
+using System.Text.Json;
 using System.Windows.Controls;
-using System;
 using System.Collections.Generic;
 
 namespace VetDI {
-    public class ColumnConfig {
-        public string Header { get; set; }
-        public string Binding { get; set; }
-        public int Width { get; set; }
-    }
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
 
     public partial class MainView : Window {
+
         //メンバ変数
         private const string ABOUT_DESCRIPTION = "about\n\n";
         private const string SEARCH_DEFAULT_TEXT = "検索";
+
         //コンストラクタ
         public MainView() {
             InitializeComponent();
@@ -39,8 +33,6 @@ namespace VetDI {
                 vm.Keyword = SEARCH_DEFAULT_TEXT; // 初期キーワード設定
                 vm.LoadDataFromSQLite(); // データの読み込み
             }
-            LoadColumnFromJson(); // JSONからDataGridカラムを動的生成
-
         }
 
         private void Button_About_Click(object sender, RoutedEventArgs e) {
@@ -67,31 +59,15 @@ namespace VetDI {
 
         private void Button_Convert_Click(object sender, RoutedEventArgs e) {
             if (DataContext is MainViewModel vm) {
-                vm.ImportCsvWithDialog();
+                ///ImportCsvWithDialog();
             }
-        }
-        
-        private void LoadColumnFromJson() {
-            try {
-                var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SRC", "Resource", "columns.json");
-                if (File.Exists(path)) {
-                    var json = File.ReadAllText(path);
-                    var columns = JsonSerializer.Deserialize<List<ColumnConfig>>(json);
-                    MainDataGrid.Columns.Clear();
-                    foreach (var col in columns) {
-                        MainDataGrid.Columns.Add(new DataGridTextColumn {
-                            Header = col.Header,
-                            Binding = new System.Windows.Data.Binding(col.Binding),
-                            Width = col.Width
-                        });
-                    }
-                }
-                else {
-                    MessageBox.Show($"{path} が見つかりません。");
-                }
-            }
-            catch { /* 読み込み失敗時は何もしない */ }
         }
 
+
+        private void AddColumn() {
+            if (DataContext is MainViewModel vm) {
+                ///AddColumn?.Invoke("ColumnName", 0); // 引数は適宜変更
+            }
+        }
     }
 }
