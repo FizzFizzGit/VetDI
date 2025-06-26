@@ -45,7 +45,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  
+
   <!-- jsonファイル -->
   <ItemGroup>
     <None Update="SRC/Resource/*.json">
@@ -56,6 +56,12 @@
   <!-- WPFエントリポイント・XAMLリソース -->
   <ItemGroup>
     <ApplicationDefinition Include="SRC/App.xaml" />
+  </ItemGroup>
+
+  <!-- 除外ディレクトリ -->
+  <ItemGroup>
+    <Compile Remove="SRC/gomi\*" />
+    <None Include="SRC/gomi\*" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,4 +1,3 @@
-// VDI関連クラスをまとめるサブフォルダ
 // MainDataType.cs
 namespace VetDI {
     public class MainDataType {

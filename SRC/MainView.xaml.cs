@@ -1,9 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Windows;
-using System.Text.Json;
-using System.Windows.Controls;
-using System.Collections.Generic;
+﻿using System.Windows;
 
 namespace VetDI {
 
@@ -25,13 +20,13 @@ namespace VetDI {
             if (DataContext is MainViewModel vm) {
                 vm.OnWindowClosing();
             }
+            base.OnClosed(e);
             // 必要ならe.Cancel = true; でキャンセルも可能
         }
 
         private void MainView_Loaded(object sender, RoutedEventArgs e) {
             if (DataContext is MainViewModel vm) {
-                vm.Keyword = SEARCH_DEFAULT_TEXT; // 初期キーワード設定
-                vm.LoadDataFromSQLite(); // データの読み込み
+                vm.Keyword = SEARCH_DEFAULT_TEXT;
             }
         }
 
@@ -59,14 +54,6 @@ namespace VetDI {
 
         private void Button_Convert_Click(object sender, RoutedEventArgs e) {
             if (DataContext is MainViewModel vm) {
-                ///ImportCsvWithDialog();
-            }
-        }
-
-
-        private void AddColumn() {
-            if (DataContext is MainViewModel vm) {
-                ///AddColumn?.Invoke("ColumnName", 0); // 引数は適宜変更
             }
         }
     }

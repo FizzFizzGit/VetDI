@@ -1,13 +1,22 @@
-
+using System;
 using System.Linq;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
+using System.Windows.Input;
+using System.Windows.Controls; // DataGridColumnを使うため
+using System.Runtime.CompilerServices; // EventHandlerを使うため
 
 namespace VetDI {
+    // ViewModelクラス
+    public class ViewModelBase : INotifyPropertyChanged {
+        public event PropertyChangedEventHandler PropertyChanged;
 
-    public class MainViewModel : INotifyPropertyChanged {
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+    public class MainViewModel : ViewModelBase {
 
         //定数
         private const string KeywordSearchDefaultText = "検索";
@@ -23,12 +32,6 @@ namespace VetDI {
                 }
             }
         }
-        public ObservableCollection<MainDataType> Items { get; } = new ObservableCollection<MainDataType>();
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string name) {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
 
         public void OnWindowClosing() {
             // データ保存やクリーンアップ処理
@@ -36,7 +39,7 @@ namespace VetDI {
 
         public void OnSubmit() {
             // 検索処理の実装（例：キーワードでフィルタリングなど）
-            LoadDataFromSQLite();
+            //LoadDataFromSQLite();
         }
 
         public void ClearKeywordIfActivate() {
@@ -47,14 +50,6 @@ namespace VetDI {
         public void SetKeywordIfDeactivate() {
             if (Keyword == "")
                 Keyword = KeywordSearchDefaultText;
-        }
-
-        public void LoadDataFromSQLite(string tableName = "MainTable") {
-            Items.Clear();
-            var vdiDb = new VdiDb(tableName);
-            foreach (var item in vdiDb.SelectAll()) {
-                Items.Add(item);
-            }
         }
     }
 }

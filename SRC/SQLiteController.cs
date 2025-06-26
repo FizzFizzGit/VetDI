@@ -44,7 +44,6 @@ namespace VetDI {
             }
         }
 
-        // 新しいメソッド: SQL コマンドを作成する
         public SQLiteCommand CreateCommand(string sql)
         {
             var cmd = new SQLiteCommand(sql, GetConnection());

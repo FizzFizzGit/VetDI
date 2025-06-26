@@ -11,6 +11,10 @@
         Title="VetDI"
         Style="{StaticResource window_common}">
 
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+
     <!-- ウインドウ全体 -->
     <Grid>
         <Grid.RowDefinitions>
@@ -72,17 +76,75 @@
                     </Button>
                 </Grid>
 
-                <!-- Columnsは空にする。C#で動的生成 -->
                 <Grid Grid.Row="1"
                       Margin="5,0,0,0">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Auto">
-                        <DataGrid x:Name="MainDataGrid"
-                                  ItemsSource="{Binding Items}"
+                        <DataGrid ItemsSource="{Binding MainDataItems}"
+                                  SelectedItem="{Binding SelectedMainDataItem, Mode=TwoWay}"
                                   AutoGenerateColumns="False"
-                                  CanUserAddRows="False"
-                                  Margin="0,5,0,0"
-                                  HorizontalAlignment="Stretch">
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"
+                                  AlternatingRowBackground="LightYellow"
+                                  RowBackground="White"
+                                  BorderBrush="LightGray"
+                                  BorderThickness="1"
+                                  VerticalContentAlignment="Center">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="連番"
+                                                    Binding="{Binding Serial}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="発行"
+                                                    Binding="{Binding Issuing}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="氏名"
+                                                    Binding="{Binding Name}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="住所"
+                                                    Binding="{Binding Address}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="電話"
+                                                    Binding="{Binding Phone}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="原因"
+                                                    Binding="{Binding Cause}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="処方"
+                                                    Binding="{Binding Prescription}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="金額"
+                                                    Binding="{Binding Amount}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="種類"
+                                                    Binding="{Binding Type}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="数"
+                                                    Binding="{Binding Count}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="年齢"
+                                                    Binding="{Binding Age}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="外観"
+                                                    Binding="{Binding Aspect}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="投薬方法"
+                                                    Binding="{Binding Regimen}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="投与量"
+                                                    Binding="{Binding Dosage}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="服用"
+                                                    Binding="{Binding Taking}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="休薬期間"
+                                                    Binding="{Binding Holidays}"
+                                                    Width="Auto"/>
+                                <DataGridTextColumn Header="その他"
+                                                    Binding="{Binding Other}"
+                                                    Width="Auto"/>
+                            </DataGrid.Columns>
                         </DataGrid>
                     </ScrollViewer>
                 </Grid>

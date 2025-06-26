@@ -15,12 +15,12 @@ namespace VetDI {
         }
 
         private static string GetInsertSql() {
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SRC", "Resource", "vdi_table.sql");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SRC", "Resource", "vdi_insert.sql");
             return File.ReadAllText(path);
         }
 
         private static string GetSelectAllSql() {
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SRC", "Resource", "vdi_table.sql");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SRC", "Resource", "vdi_select_all.sql");
             return File.ReadAllText(path);
         }
 
